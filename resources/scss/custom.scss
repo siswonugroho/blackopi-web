@@ -1,0 +1,53 @@
+@import url("https://rsms.me/inter/inter.css");
+
+* {
+  font-family: "Inter", sans-serif;
+  // letter-spacing: .0125rem;
+}
+
+.nav-tabs {
+  border-bottom: none;
+  > .nav-item {
+    > .nav-link {
+      background-color: transparent;
+      border: none;
+      &.active {
+        border-bottom: 2px solid #5d2607;
+      }
+    }
+  }
+}
+
+.img-product-detail {
+  width: 400px;
+  height: 400px;
+  img {
+    object-fit: cover;
+  }
+}
+.avatar-detail-reseller {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+}
+
+#dropdown-notif .dropdown-menu {
+  height: 70vh;
+  width: 375px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(173, 173, 173);
+
+    border-radius: 10px;
+  }
+}
