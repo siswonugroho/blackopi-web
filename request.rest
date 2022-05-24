@@ -1,0 +1,198 @@
+@token = 120|kN0G3VAaLqHSQuNDnthT6Kn0tljJ8P6SbXUmrjYI
+@baseurl = http://blackopi-web.io
+###
+POST {{ baseurl }}/api/admin/register HTTP/1.1
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+nama_admin=Admin 2
+&email=adminblackopi2@gmail.com
+&password=admin2
+&password_confirmation=admin2
+
+###
+GET {{ baseurl }}/api/json/history/1 HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+# register reseller
+POST {{ baseurl }}/api/reseller/register HTTP/1.1
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+nama_reseller=David
+&email=david123@gmail.com
+&password=david123
+&password_confirmation=david123
+&telp=085798729872
+
+###
+# login reseller
+POST {{baseurl}}/api/reseller/login HTTP/1.1
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+username=ilham123@gmail.com
+&password=ilham123
+
+###
+# Region: Get all province
+GET {{ baseurl }}/api/province HTTP/1.1
+Accept: application/json
+
+###
+# Region: Get all city by province
+GET {{ baseurl }}/api/city/10 HTTP/1.1
+Accept: application/json
+
+###
+# Region: Get all subdistrict by city
+GET {{ baseurl }}/api/subdistrict/250 HTTP/1.1
+Accept: application/json
+
+###
+# Get ongkir by city id and weight
+GET {{ baseurl }}/api/ongkir/75/200 HTTP/1.1
+Accept: application/json
+###
+# Logout reseller
+POST {{ baseurl }}/api/reseller/logout  HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+#get all product only if reseller logged in
+GET {{ baseurl }}/api/product/all  HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+#get product name & desc by ID
+GET {{ baseurl }}/api/product/1  HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+#get reseller account details
+GET {{ baseurl }}/api/reseller/profile/details  HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+#Simpan transaksi reseller
+POST {{ baseurl }}/api/reseller/transaction/save  HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/x-www-form-urlencoded
+
+id_produk=1
+&kuantitas=2
+&total_harga=26000
+&payment_type=cstore
+&payment_name=indomaret
+
+###
+#get this reseller transactions list
+GET {{ baseurl }}/api/reseller/transactions  HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+#get this reseller transaction detail
+GET {{ baseurl }}/api/reseller/transaction/detail/c027982e8e8fb60075518e643aad382d HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+# Process transaction
+GET {{ baseurl }}/api/reseller/transaction/action/cancel/668b89236b347eb10db4abaf19aac4ce  HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+#(ngrok)get this reseller transaction detail
+GET http://9fbe-125-166-116-118.ngrok.io/blackopi-web/public/api/reseller/transaction/detail/7bcdac41ac66d61b26c425b871ba2373  HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+# Edit profile
+POST {{ baseurl }}/api/reseller/profile/edit HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/x-www-form-urlencoded
+
+nama_reseller=Ilham
+&email=ilham123@gmail.com
+&id_provinsi=11
+&id_kota=247
+&id_kecamatan=3495
+&telp=08553263463
+&alamat=Dolopo RT 25 RW 04 
+
+
+###
+# upload reseller prof pic
+POST {{ baseurl }}/api/reseller/profile/uploadphoto
+Accept: application/json
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="id"
+
+2
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="foto_profil_lama"
+
+z8j6FZ2yeuZsfjxs5xisZckPM8959SvMeHhQVs8c.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="foto_profil"; filename="female.jfif"
+Content-Type: image/jpeg
+
+< ./ppexample/female.jfif
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+# Proses pembayaran ke midtrans
+POST https://api.sandbox.midtrans.com/v2/charge HTTP/1.1
+Accept: application/json
+Authorization: Basic U0ItTWlkLXNlcnZlci1IZzUzZ2N5SzhXLTV4VkVNTjRmVjdTcXc6
+Content-Type: application/json
+
+{
+  "payment_type": "bank_transfer",
+  "transaction_details": {
+    "order_id": "order-225c8e0f7749dbc45e200b1440b8ac4d",
+    "gross_amount": 14000
+  },
+  "bank_transfer":{
+      "bank": "bri"
+  },
+  "custom_expiry": {
+      "expiry_duration": 60,
+      "unit": "minute"
+  },
+  "custom_field1": "Pembelian produk Original Coffee"
+}
+
+###
+# Cek status pembayaran
+GET https://api.sandbox.midtrans.com/v2/c027982e8e8fb60075518e643aad382d/status HTTP/1.1
+Accept: application/json
+Authorization: Basic U0ItTWlkLXNlcnZlci1IZzUzZ2N5SzhXLTV4VkVNTjRmVjdTcXc6
+Content-Type: application/json
+
+
+###
+# Login resi.id
+POST https://resi.id/api/auth/login HTTP/1.1
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+email=sovanafilm@gmail.com
+&password=5cZcymLLQx5d
+
+
+

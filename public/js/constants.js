@@ -1,0 +1,1 @@
+const BASEURL = "http://blackopi-web.io"
