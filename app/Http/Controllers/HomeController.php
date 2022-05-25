@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
       $sold_store = TransaksiToko::sum('kuantitas');
       $sold_reseller = TransaksiReseller::sum('kuantitas');
-      $count_reseller = TransaksiReseller::count();
+      $count_reseller = Reseller::count();
       $available = Produk::sum('stok');
       $date_now = Carbon::now();
       $five_recent_resellers = Reseller::orderBy('created_at')->limit(5)->get(['id', 'nama_reseller', 'foto_profil', 'telp']);

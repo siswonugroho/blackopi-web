@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         "targets": 0,
         "render": function (data, type, row, meta) {
-          return `<img src="${BASEURL}/image.php/${row.foto_profil}?width=80&height=80&image=${BASEURL}/storage/upload/img/reseller/${row.foto_profil}" class="rounded-circle me-2" height="36"> ${row.nama_reseller}`;
+          return `<img src="${BASEURL}/image.php/${row.foto_profil}?width=80&height=80&image=${BASEURL}/storage/upload/img/reseller/${row.foto_profil}" class="rounded-circle me-2" height="36" onerror="this.onerror = null; this.src = '${BASEURL}/img/noavatar.png'"> ${row.nama_reseller}`;
         }
       },
       {

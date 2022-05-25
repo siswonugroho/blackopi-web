@@ -154,6 +154,8 @@ class ResellerController extends Controller
         'name' => $product_selected->nama_produk
       ]
     ];
+    // return response()->json($item_details);
+    // die;
 
     if ($product_selected->stok < $validatedData['kuantitas']) {
       return response()->json([
@@ -167,7 +169,7 @@ class ResellerController extends Controller
       'payment_type' => $validatedData['payment_type'],
       'transaction_details' => [
         'order_id' => md5(auth('sanctum')->id() . '-' . date('Ymd-His')),
-        'gross_amount' => $item_details['price'] * $item_details['quantity']
+        'gross_amount' => $item_details[0]['price'] * $item_details[0]['quantity']
       ],
       'custom_expiry' => [
         'expiry_duration' => 60,
@@ -216,7 +218,7 @@ class ResellerController extends Controller
         'message' => 'Pesanan baru dari ' . $customer_details['first_name'] . ' menunggu pembayaran.',
         'url' => url('/restock'),
         'icon' => 'mdi:clipboard-plus-outline'
-      ]));  
+      ]));
       $response = [
         'status' => 'success',
         'id_pesanan' => $transaction_data['transaction_details']['order_id'],
@@ -320,7 +322,7 @@ class ResellerController extends Controller
       $notif_icon = 'mdi:clipboard-remove-outline';
     }
     $row->save();
-    $all_users = Admin::all();
+    $all_users = Admin::find(1);
     Notification::send($all_users, new RealTimeNotification([
       'message' => 'Transaksi pesanan ' . $order_id . ' ' . $status_text,
       'url' => url('/restock'),

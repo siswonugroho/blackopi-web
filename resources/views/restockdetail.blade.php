@@ -28,7 +28,7 @@
         <div class="card bg-primary-light h-100 border-0">
           <div class="card-body">
             <p class="text-secondary mb-2">Produk</p>
-            <p class="fs-5">{{ $produk->nama_produk }} x{{ $transaksi->kuantitas }}</p>
+            <p class="fs-5">{{ $transaksi->kuantitas }} kg {{ $produk->nama_produk }}</p>
           </div>
         </div>
       </div>

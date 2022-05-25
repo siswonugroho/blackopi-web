@@ -47,6 +47,42 @@
 
       </canvas>
     </section>
+    <section class="mb-2">
+      <div class="row row-cols-2 gy-4">
+        <div class="col">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <p class="text-secondary">Total kg terjual (toko)</p>
+              <p class="fs-4">2 kg</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <p class="text-secondary">Total kg terjual (reseller)</p>
+              <p class="fs-4">4 kg</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <p class="text-secondary">Total pendapatan (toko)</p>
+              <p class="fs-4">Rp.26.000</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <p class="text-secondary">Total pendapatan (reseller)</p>
+              <p class="fs-4">Rp.48.000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 @endsection

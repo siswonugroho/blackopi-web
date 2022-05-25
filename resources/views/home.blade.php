@@ -45,12 +45,10 @@
             </div>
           </div>
         </div>
-        
-
       </div>
     </section>
-    <div class="row">
-      <section class="col-md-8">
+    <section class="row mb-3">
+      <div class="col-md-8">
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <header>
@@ -73,8 +71,8 @@
             </canvas>
           </div>
         </div>
-      </section>
-      <section class="col-md">
+      </div>
+      <div class="col-md">
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <header class="h3 fw-bold">Data Reseller</header>
@@ -93,8 +91,14 @@
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+    {{-- <section class="card shadow-sm border-0">
+      <div class="card-body">
+        <h3 class="fw-bold">Transaksi terbaru</h3>
+        
+      </div>
+    </section> --}}
   </main>
 </div>
 

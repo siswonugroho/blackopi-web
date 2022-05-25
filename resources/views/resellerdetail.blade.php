@@ -28,7 +28,7 @@
         <div class="col-7">
           <div class="card border-0 shadow">
             <div class="card-body">
-              <p class="fs-3 fw-bold">Riwayat Pemesanan</p>
+              <p class="fs-3 fw-bold">Riwayat Transaksi</p>
               <div class="list-group list-group-flush">
                 @foreach ($transaksi as $item)
                     <div class="list-group-item vstack">

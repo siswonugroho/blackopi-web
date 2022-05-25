@@ -1,4 +1,4 @@
-@token = 120|kN0G3VAaLqHSQuNDnthT6Kn0tljJ8P6SbXUmrjYI
+@token = 123|Fzyb8hdJiDrAOEHSm5DQa4kFoYBzBRibjEZs9PQI
 @baseurl = http://blackopi-web.io
 ###
 POST {{ baseurl }}/api/admin/register HTTP/1.1
@@ -21,11 +21,11 @@ POST {{ baseurl }}/api/reseller/register HTTP/1.1
 Accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-nama_reseller=David
-&email=david123@gmail.com
-&password=david123
-&password_confirmation=david123
-&telp=085798729872
+nama_reseller=Selfi
+&email=selfi123@gmail.com
+&password=selfi123
+&password_confirmation=selfi123
+&telp=0857598327342
 
 ###
 # login reseller
@@ -87,8 +87,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/x-www-form-urlencoded
 
 id_produk=1
-&kuantitas=2
-&total_harga=26000
+&kuantitas=3
 &payment_type=cstore
 &payment_name=indomaret
 
@@ -100,7 +99,7 @@ Authorization: Bearer {{token}}
 
 ###
 #get this reseller transaction detail
-GET {{ baseurl }}/api/reseller/transaction/detail/c027982e8e8fb60075518e643aad382d HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/detail/48c67670db5d1a7e5061602c5f5045ca HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
 

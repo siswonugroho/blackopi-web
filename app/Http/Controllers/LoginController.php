@@ -8,6 +8,7 @@ use App\Models\Reseller;
 use App\Models\User;
 use App\Notifications\RealTimeNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
@@ -96,6 +97,7 @@ class LoginController extends Controller
       $user = Reseller::where('telp', $data['telp'])->first(['id', 'nama_reseller', 'email', 'telp']);
     } else {
       return response()->json([
+        'success' => 0,
         'message' => 'Email atau nomor telepon tidak valid'
       ], 422);
     }
@@ -103,33 +105,50 @@ class LoginController extends Controller
     if (Auth::guard('reseller')->attempt($data)) {
       $token = $user->createToken('apitoken')->plainTextToken;
       $response = [
-        'status' => 'success',
+        'success' => 1,
         'user' => $user,
         'token' => $token,
       ];
       return response($response, 201);
     }
     return response([
+      'success' => 0,
       'message' => 'Email, telepon atau password salah'
     ], 401);
   }
 
   public function api_register_reseller(Request $request)
   {
-    $form = $request->validate([
+    $form = [
+      'nama_reseller' => $request->input('nama_reseller'),
+      'email' => $request->input('email'),
+      'password' => $request->input('password'),
+      'password_confirmation' => $request->input('password_confirmation'),
+      'telp' => $request->input('telp')
+    ];
+    $validator = Validator::make($form, [
       'nama_reseller' => 'required|string',
       'email' => 'required|email|unique:reseller,email',
       'password' => 'required|string|confirmed',
       'telp' => 'required|string|unique:reseller,telp',
     ]);
 
-    $reseller = Reseller::create($form);
-    $response = [
-      'status' => 'success',
-      'message' => 'Registrasi berhasil',
-      'user' => $reseller,
-    ];
+    if ($validator->fails()) {
+      $response = [
+        'success' => 0,
+        'message' => $validator->errors()
+      ];
+    } else {
+      $reseller = Reseller::create($form);
+      $response = [
+        'success' => 1,
+        'message' => 'Registrasi berhasil',
+        'user' => $reseller,
+      ];
+    }
     return response($response, 201);
+
+    
   }
 
   public function logout_admin(Request $request)
