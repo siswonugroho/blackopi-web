@@ -1,19 +1,5 @@
 @token = 123|Fzyb8hdJiDrAOEHSm5DQa4kFoYBzBRibjEZs9PQI
 @baseurl = http://blackopi-web.io
-###
-POST {{ baseurl }}/api/admin/register HTTP/1.1
-Accept: application/json
-Content-Type: application/x-www-form-urlencoded
-
-nama_admin=Admin 2
-&email=adminblackopi2@gmail.com
-&password=admin2
-&password_confirmation=admin2
-
-###
-GET {{ baseurl }}/api/json/history/1 HTTP/1.1
-Accept: application/json
-Authorization: Bearer {{token}}
 
 ###
 # register reseller
@@ -152,6 +138,13 @@ Content-Type: image/jpeg
 
 < ./ppexample/female.jfif
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+
+
+
+
+# --------------- Kode di bawah ini gak terkait lagi sama API ---------------
 
 ###
 # Proses pembayaran ke midtrans
