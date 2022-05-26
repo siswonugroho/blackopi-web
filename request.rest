@@ -1,4 +1,4 @@
-@token = 123|Fzyb8hdJiDrAOEHSm5DQa4kFoYBzBRibjEZs9PQI
+@token = 124|jBxqVwRyQRPDh30FRzcsezQbSv2EAusxqQZP8LTe
 @baseurl = http://blackopi-web.io
 
 ###
@@ -41,6 +41,7 @@ Accept: application/json
 # Get ongkir by city id and weight
 GET {{ baseurl }}/api/ongkir/75/200 HTTP/1.1
 Accept: application/json
+
 ###
 # Logout reseller
 POST {{ baseurl }}/api/reseller/logout  HTTP/1.1
@@ -48,7 +49,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
-#get all product only if reseller logged in
+#(broken, don't use) get all product only if reseller logged in
 GET {{ baseurl }}/api/product/all  HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
@@ -144,7 +145,7 @@ Content-Type: image/jpeg
 
 
 
-# --------------- Kode di bawah ini gak terkait lagi sama API ---------------
+# --------------- Kode di bawah ini gak berhubungan sama API di mobile ---------------
 
 ###
 # Proses pembayaran ke midtrans
