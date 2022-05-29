@@ -21,4 +21,8 @@ class TransaksiReseller extends Model
   {
     return $this->belongsTo(Pembayaran::class, 'id_metode_bayar');
   }
+  public function kurir()
+  {
+    return $this->belongsTo(Kurir::class, 'id_kurir');
+  }
 }

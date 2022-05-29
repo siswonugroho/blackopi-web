@@ -27,6 +27,7 @@ Route::get('province', [RegionController::class, 'get_provinsi']);
 Route::get('city/{item:province_id}', [RegionController::class, 'get_kota']);
 Route::get('subdistrict/{item:city_id}', [RegionController::class, 'get_kecamatan']);
 Route::get('ongkir/{city_id}/{item:id}', [RegionController::class, 'get_ongkir']);
+Route::get('kurir/all', [RegionController::class, 'get_kurir']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
   Route::get('product/{item:id}', [ProductController::class, 'get_product_by_id']);
   Route::post('reseller/logout', [LoginController::class, 'logout_reseller']);

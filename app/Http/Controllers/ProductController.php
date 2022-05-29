@@ -72,6 +72,7 @@ class ProductController extends Controller
 
   public function get_product_by_id(Produk $item)
   {
+    $item->foto_produk = asset('storage/upload/img/' . $item->foto_produk);
     return response($item);
   }
 }

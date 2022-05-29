@@ -1,4 +1,4 @@
-@token = 124|jBxqVwRyQRPDh30FRzcsezQbSv2EAusxqQZP8LTe
+@token = 125|jG3RbPUg3OZQpCd6KF3kKkLo5liIvpT1e9QD14V7
 @baseurl = http://blackopi-web.io
 
 ###
@@ -39,7 +39,7 @@ Accept: application/json
 
 ###
 # Get ongkir by city id and weight
-GET {{ baseurl }}/api/ongkir/75/200 HTTP/1.1
+GET {{ baseurl }}/api/ongkir/75/100 HTTP/1.1
 Accept: application/json
 
 ###
@@ -67,6 +67,11 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
+#get all kurir
+GET {{ baseurl }}/api/kurir/all HTTP/1.1
+Accept: application/json
+
+###
 #Simpan transaksi reseller
 POST {{ baseurl }}/api/reseller/transaction/save  HTTP/1.1
 Accept: application/json
@@ -75,8 +80,9 @@ Content-Type: application/x-www-form-urlencoded
 
 id_produk=1
 &kuantitas=3
-&payment_type=cstore
-&payment_name=indomaret
+&id_kurir=1
+&payment_type=bank_transfer
+&payment_name=bri
 
 ###
 #get this reseller transactions list
@@ -86,7 +92,7 @@ Authorization: Bearer {{token}}
 
 ###
 #get this reseller transaction detail
-GET {{ baseurl }}/api/reseller/transaction/detail/48c67670db5d1a7e5061602c5f5045ca HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/detail/98c960dd0a1bc3aabedd659b729e8eed HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
 

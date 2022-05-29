@@ -131,6 +131,7 @@ class ResellerController extends Controller
     $validatedData = $request->validate([
       'id_produk' => 'required',
       'kuantitas' => 'numeric|required',
+      'id_kurir' => 'required',
       'payment_type' => 'required',
       'payment_name' => 'required',
     ]);
@@ -200,6 +201,7 @@ class ResellerController extends Controller
     $transaksi->id_produk = $validatedData['id_produk'];
     $transaksi->id_reseller = auth('sanctum')->id();
     $transaksi->kuantitas = $validatedData['kuantitas'];
+    $transaksi->id_kurir = $validatedData['id_kurir'];
     $transaksi->total_harga = $transaction_data['transaction_details']['gross_amount'];
     $transaksi->id_metode_bayar = $id_metode_bayar;
     if ($midtrans_response->transaction_status == 'pending') {
@@ -220,14 +222,14 @@ class ResellerController extends Controller
         'icon' => 'mdi:clipboard-plus-outline'
       ]));
       $response = [
-        'status' => 'success',
+        'success' => 1,
         'id_pesanan' => $transaction_data['transaction_details']['order_id'],
-        'status_pesanan' => $midtrans_response->transaction_status
+        'status_pesanan' => $midtrans_response->transaction_status,
       ];
       return response()->json($response);
     } else {
       return response([
-        'status' => 'failed',
+        'success' => 0,
         'message' => 'Transaksi gagal',
         'status_pesanan' => $midtrans_response->transaction_status
       ]);
@@ -258,6 +260,8 @@ class ResellerController extends Controller
     $response['status'] = $status->transaction_status;
     $response['msg'] = $status->status_message;
     $response['produk'] = $response->produk()->first();
+    $response['kurir'] = $response->kurir()->first();
+    $response['kurir']->logo = url('/img/logokurir/' . $response['kurir']->logo);
 
     if ($status->payment_type == 'cstore') {
       $response['payment_name'] = $status->store;
@@ -337,6 +341,7 @@ class ResellerController extends Controller
     $user_details->kecamatan = $user_details->kecamatan()->first();
     $user_details->kota = $user_details->kota()->first();
     $user_details->provinsi = $user_details->provinsi()->first();
+    $user_details->foto_profil = asset('storage/upload/img/reseller/' . $user_details->foto_profil);
     return response()->json($user_details);
   }
 

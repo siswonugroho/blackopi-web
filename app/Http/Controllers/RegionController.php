@@ -51,6 +51,7 @@ class RegionController extends Controller
         http_build_query($post_data_ongkir)
       );
       foreach ($data_ongkir->rajaongkir->results[0]->costs as $service_value) {
+        $value->logo_url = asset('/img/logokurir/' . $value->logo);
         if ($value->nama_service == $service_value->service) {
           $value->ongkir = $service_value->cost[0]->value;
         } else {
@@ -59,6 +60,15 @@ class RegionController extends Controller
       }
     }
     return response()->json($courier_list);
+  }
+
+  public function get_kurir()
+  {
+    $data = Kurir::all();
+    foreach ($data as $key => $value) {
+      $value['logo'] = url('/img/logokurir/' . $value['logo']);
+    }
+    return response()->json($data);
   }
 
   private function fetchdata_curl($method, $url, array $headers, $post_data = "")
