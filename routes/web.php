@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth:admin']], function ()
   Route::get('reseller/detail/{item:id}', [ResellerController::class, 'view_reseller_detail']);
   Route::get('restock', [ResellerController::class, 'view_restock']);
   Route::get('restock/detail/{item:id_pesanan}', [ResellerController::class, 'view_restock_detail']);
+  Route::post('restock/inputresi', [ResellerController::class, 'input_resi']);
   Route::get('report', [TokoController::class, 'view_report']);
   Route::get('logout', [LoginController::class, 'logout_admin']);
 });

@@ -52,14 +52,17 @@ document.addEventListener('DOMContentLoaded', function () {
         "targets": 5,
         "render": function (data, type, row, meta) {
           let textColor = '';
-          if (row.status === 'pending') {
-            textColor = 'text-warning';
+          if (row.status === 'diproses') {
+            textColor = 'bg-warning';
+            return `<span class="badge fs-6 ${textColor}">perlu dikirim</span>`
           } else if (row.status === 'selesai') {
-            textColor = 'text-success';
+            textColor = 'bg-success';
           } else if (row.status === 'cancel') {
-            textColor = 'text-danger';
+            textColor = 'bg-danger';
+          } else {
+            textColor = 'bg-primary';
           }
-          return `<span class="${textColor}">${row.status}</span>`
+          return `<span class="badge fs-6 ${textColor}">${row.status}</span>`
         }
       },
     ]

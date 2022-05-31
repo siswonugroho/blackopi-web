@@ -15,6 +15,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use \Midtrans as Midtrans;
 use Ramsey\Uuid\Uuid;
@@ -86,6 +87,17 @@ class ResellerController extends Controller
       $detailpembayaran->nama_tipe = 'Transfer Bank';
     } else if ($detailpembayaran->tipe == 'cstore') {
       $detailpembayaran->nama_tipe = 'Gerai Retail';
+    }
+    if (!is_null($detailreseller->alamat)) {
+      $alamat_lengkap = [
+        $detailreseller->alamat,
+        $detailreseller->kecamatan()->first(['subdistrict_name'])->subdistrict_name,
+        $detailreseller->kota()->first(['city_name'])->city_name,
+        $detailreseller->provinsi()->first(['province_name'])->province_name,
+      ];
+      $detailreseller->alamat_lengkap = implode(', ', $alamat_lengkap);
+    } else {
+      $detailreseller->alamat_lengkap = '(belum diisi)';
     }
     return view('restockdetail', [
       'title' => 'Detail Transaksi',
@@ -169,7 +181,7 @@ class ResellerController extends Controller
     $transaction_data = [
       'payment_type' => $validatedData['payment_type'],
       'transaction_details' => [
-        'order_id' => md5(auth('sanctum')->id() . '-' . date('Ymd-His')),
+        'order_id' => $this->generate(12, true),
         'gross_amount' => $item_details[0]['price'] * $item_details[0]['quantity']
       ],
       'custom_expiry' => [
@@ -209,7 +221,7 @@ class ResellerController extends Controller
     } else if ($midtrans_response->transaction_status == 'cancel' || $midtrans_response->transaction_status == 'expire') {
       $transaksi->status = 'cancel';
     } else if ($midtrans_response->transaction_status == 'settlement') {
-      $transaksi->status = 'selesai';
+      $transaksi->status = 'diproses';
     }
 
     if ($transaksi->save()) {      // event(new RealTimeNotif('Transaksi baru dari ' . Reseller::find($validatedData['id_reseller'])->nama_reseller));
@@ -309,8 +321,8 @@ class ResellerController extends Controller
 
 
     if ($transaction == 'settlement') {
-      $row->status = 'selesai';
-      $status_text = 'telah lunas.';
+      $row->status = 'diproses';
+      $status_text = 'telah lunas dan menunggu dikirimkan.';
       $notif_icon = 'mdi:clipboard-check-outline';
     } else if ($transaction == 'cancel') {
       $row->status = 'cancel';
@@ -367,15 +379,37 @@ class ResellerController extends Controller
     $resellerToEdit->alamat = $validatedData['alamat'];
     if ($resellerToEdit->save()) {
       return response()->json([
-        'status' => 'success',
+        'success' => 1,
         'message' => 'Berhasil memperbarui profil'
       ]);
     } else {
       return response()->json([
-        'status' => 'failed',
+        'success' => 0,
         'message' => 'Gagal memperbarui profil'
       ]);
     }
+  }
+
+  public function input_resi(Request $request)
+  {
+    $validation = Validator::make([
+      'no_resi' => $request->post('no_resi')
+    ], [
+      'no_resi' => 'unique:App\Models\TransaksiReseller,no_resi'
+    ], [
+      'unique' => 'Nomor resi ini telah digunakan'
+    ]);
+    if ($validation->fails()) {
+      return redirect('restock/detail/' . $request->post('id_pesanan'))
+      ->withErrors($validation)->withInput();
+    } else {
+      $pesanan = TransaksiReseller::where('id_pesanan', $request->post('id_pesanan'))->first();
+      $pesanan->no_resi = $validation->safe()->only(['no_resi'])['no_resi'];
+      $pesanan->status = 'dikirim';
+      $pesanan->save();
+      return redirect('restock/detail/' . $request->post('id_pesanan'))->with('success_msg', 'Nomor resi berhasil disimpan.');
+    }
+    
   }
 
   public function upload_profile_pic(Request $request)
@@ -400,7 +434,7 @@ class ResellerController extends Controller
 
     if ($reseller->save()) {
       return response()->json([
-        'status' => 'success',
+        'success' => 1,
         'message' => 'Berhasil memperbarui foto profil',
         'profil' => [
           'id' => $reseller->id,
@@ -410,9 +444,34 @@ class ResellerController extends Controller
       ]);
     } else {
       return response()->json([
-        'status' => 'failed',
+        'success' => 0,
         'message' => 'Gagal memperbarui foto profil'
       ]);
     }
+  }
+
+  public function finish_order(TransaksiReseller $item)
+  {
+    $response = [];
+    $item->status = 'selesai';
+    if ($item->save()) {
+      $response['success'] = 1;
+      $response['message'] = 'Pesanan selesai';
+    } else {
+      $response['success'] = 0;
+      $response['message'] = 'Gagal menyelesaikan pesanan';
+    }
+    return response()->json($response);
+  }
+
+  private function generate(int $length, bool $uppercase_only)
+  {
+    if ($uppercase_only) {
+      $set = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    } else {
+      $set = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    }
+    $date_now = date('YmdHis');
+    return substr(str_shuffle($set . $date_now), 0, $length);
   }
 }

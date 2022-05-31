@@ -13,6 +13,7 @@ function generateChart(month, year) {
     btnLoading.classList.add('d-none');
     return response.json();
   }).then(responseJson => {
+    console.log(responseJson);
     if (reportChart != null) {
       reportChart.data.labels = responseJson.tanggal;
       reportChart.data.datasets[0].data = responseJson.toko;
@@ -53,7 +54,7 @@ function generateChart(month, year) {
               },
               ticks: {
                 beginAtZero: true,
-                stepSize: 1
+                // stepSize: 0.1
               },
               min: 0
             },

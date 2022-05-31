@@ -67,7 +67,7 @@ class TokoController extends Controller
     foreach ($dataToko as $value) {
       $day = Carbon::parse($value->created_at)->day;
       if (!isset($valueToko[$day])) {
-        $valueToko[$day] = intval($value->kuantitas);
+        $valueToko[$day] = floatval($value->kuantitas);
       } else {
         $valueToko[$day] += $value->kuantitas;
       }

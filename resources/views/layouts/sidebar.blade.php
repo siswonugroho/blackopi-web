@@ -96,7 +96,7 @@ $hargaProduk = number_format($produkItem->harga, 0, ',', '.')
     <div class="row row-cols-2">
       <div class="mb-3">
         <label for="kuantitas" class="form-label">Kuantitas (kg)</label>
-        <input type="number" name="kuantitas" id="input-kuantitas" class="form-control">
+        <input type="number" name="kuantitas" step="0.1" id="input-kuantitas" class="form-control">
       </div>
       <div class="mb-3">
         <label for="jumlah_bayar" class="form-label">Jumlah Bayar (Rp)</label>

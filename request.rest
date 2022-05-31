@@ -79,7 +79,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/x-www-form-urlencoded
 
 id_produk=1
-&kuantitas=3
+&kuantitas=2
 &id_kurir=1
 &payment_type=bank_transfer
 &payment_name=bri
@@ -92,7 +92,13 @@ Authorization: Bearer {{token}}
 
 ###
 #get this reseller transaction detail
-GET {{ baseurl }}/api/reseller/transaction/detail/98c960dd0a1bc3aabedd659b729e8eed HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/detail/15TI0BOJ0DXZ HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+#change transaction status to 'selesai' (a.k.a finish transaction)
+GET {{ baseurl }}/api/reseller/transaction/finish/15TI0BOJ0DXZ HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
 

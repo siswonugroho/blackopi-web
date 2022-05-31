@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
   Route::get('reseller/transactions', [ResellerController::class, 'get_all_transactions']);
   Route::get('reseller/transaction/detail/{id_pesanan}', [ResellerController::class, 'get_detail_transaction']);
   Route::get('reseller/transaction/action/{action}/{id_pesanan}', [ResellerController::class, 'process_transaction']);
+  Route::get('reseller/transaction/finish/{item:id_pesanan}', [ResellerController::class, 'finish_order']);
   Route::get('reseller/profile/details', [ResellerController::class, 'get_user_details']);
   Route::post('reseller/profile/edit', [ResellerController::class, 'edit_profile']);
   Route::post('reseller/profile/uploadphoto', [ResellerController::class, 'upload_profile_pic']);

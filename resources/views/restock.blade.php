@@ -30,7 +30,15 @@
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link btn-status-table" id="pending-tab" data-bs-toggle="pill" data-bs-target="#pending" data-order-status="pending" type="button"
-                role="tab" aria-controls="pending" aria-selected="false">Pending</button>
+                role="tab" aria-controls="pending" aria-selected="false">Belum bayar</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link btn-status-table" id="diproses-tab" data-bs-toggle="pill" data-bs-target="#diproses" data-order-status="diproses" type="button"
+                role="tab" aria-controls="diproses" aria-selected="false">Perlu dikirim</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link btn-status-table" id="dikirim-tab" data-bs-toggle="pill" data-bs-target="#dikirim" data-order-status="dikirim" type="button"
+                role="tab" aria-controls="dikirim" aria-selected="false">Dikirim</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link btn-status-table" id="selesai-tab" data-bs-toggle="pill" data-bs-target="#selesai" data-order-status="selesai" type="button"
