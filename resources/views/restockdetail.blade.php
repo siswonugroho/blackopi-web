@@ -68,9 +68,12 @@
                   <form action="{{ url('restock/inputresi') }}" method="post">
                     @csrf
                     <label for="inputnoresi" class="form-label">Masukkan nomor resi</label>
-                    <div class="hstack gap-2">
+                    <div class="hstack gap-2 align-items-start">
                       <input type="hidden" name="id_pesanan" value="{{ $transaksi->id_pesanan }}">
-                      <input type="text" name="no_resi" id="inputnoresi" class="form-control" placeholder="Nomor resi">
+                      <div class="input-resi">
+                        <input type="text" name="no_resi" id="inputnoresi" class="form-control @error('no_resi') is-invalid @enderror" placeholder="Nomor resi">
+                        <span class="invalid-feedback">@error('no_resi') {{ $message }} @enderror</span>
+                      </div>
                       <input type="submit" class="btn btn-primary" value="Simpan">
                     </div>
                     <small class="form-text">Dengan menyimpan nomor resi, status pesanan akan berubah menjadi "Dikirim"</small>

@@ -92,7 +92,7 @@ Authorization: Bearer {{token}}
 
 ###
 #get this reseller transaction detail
-GET {{ baseurl }}/api/reseller/transaction/detail/15TI0BOJ0DXZ HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/detail/3C0278HWQ1ZD HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
 

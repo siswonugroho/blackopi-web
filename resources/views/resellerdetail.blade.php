@@ -29,15 +29,26 @@
           <div class="card border-0 shadow">
             <div class="card-body">
               <p class="fs-3 fw-bold">Riwayat Transaksi</p>
-              <div class="list-group list-group-flush">
-                @foreach ($transaksi as $item)
-                    <div class="list-group-item vstack">
-                      <span>{{ $item->kuantitas . 'kg' }} - Rp.{{ number_format($item->total_harga, 0, ',', '.') }}</span>
-                      <span class="text-secondary">{{ $item->tanggal }}</span>
-                      <span>{{ ucfirst($item->status) }}</span>
-                    </div>
-                @endforeach
-              </div>
+              <table class="table">
+                <thead class="text-secondary text-uppercase">
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Kuantitas</th>
+                    <th>Total Harga</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="align-middle">
+                  @foreach ($transaksi as $item)
+                  <tr>
+                    <td>{{ $item->tanggal }}</td>
+                    <td>{{ $item->kuantitas . 'kg' }}</td>
+                    <td>Rp.{{ number_format($item->total_harga, 0, ',', '.') }}</td>
+                    <td>{{ ucfirst($item->status) }}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

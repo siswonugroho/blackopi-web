@@ -78,7 +78,7 @@
             <header class="h3 fw-bold">Data Reseller</header>
             <div class="list-group list-group-flush">
               @foreach ($five_recent_resellers as $item)    
-              <a href="#" class="list-group-item hstack">
+              <a href="{{ url('reseller/detail/' . $item->id) }}" class="list-group-item hstack">
                 <img
                   src="{{ url('/') }}/image.php/{{ $item->foto_profil }}?width=80&height=80&image={{ url('/') }}/storage/upload/img/reseller/{{ $item->foto_profil }}"
                   class="rounded-circle me-2" style="height: 3rem;" onerror="this.onerror = null; this.src = '{{url('/img/noavatar.png')}}'">
@@ -89,6 +89,7 @@
               </a>
               @endforeach
             </div>
+            <a href="{{ url('reseller') }}" class="text-decoration-none"></a>
           </div>
         </div>
       </div>

@@ -147,10 +147,17 @@ class TokoController extends Controller
     for ($i=$year; $i > ($year-5); $i--) { 
       $years[] = $i;
     }
+    $totals = [
+      'sold_store' => TransaksiToko::sum('kuantitas'),
+      'sold_reseller' => TransaksiReseller::sum('kuantitas'),
+      'total_rp_store' => number_format(TransaksiToko::sum('total_harga'), 0, ',', '.'),
+      'total_rp_reseller' => number_format(TransaksiReseller::sum('total_harga'), 0, ',', '.'),
+    ];
     return view('report', [
       'title' => 'Laporan Penjualan',
       'months' => $months,
-      'years' => $years
+      'years' => $years,
+      'total' => $totals
     ]);
   }
 }

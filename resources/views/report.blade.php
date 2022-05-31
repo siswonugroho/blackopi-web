@@ -53,7 +53,7 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body">
               <p class="text-secondary">Total kg terjual (toko)</p>
-              <p class="fs-4">2 kg</p>
+              <p class="fs-4">{{ $total['sold_store'] }} kg</p>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body">
               <p class="text-secondary">Total kg terjual (reseller)</p>
-              <p class="fs-4">4 kg</p>
+              <p class="fs-4">{{ $total['sold_reseller'] }} kg</p>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body">
               <p class="text-secondary">Total pendapatan (toko)</p>
-              <p class="fs-4">Rp.26.000</p>
+              <p class="fs-4">Rp.{{ $total['total_rp_store'] }}</p>
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body">
               <p class="text-secondary">Total pendapatan (reseller)</p>
-              <p class="fs-4">Rp.48.000</p>
+              <p class="fs-4">Rp.{{ $total['total_rp_reseller'] }}</p>
             </div>
           </div>
         </div>
