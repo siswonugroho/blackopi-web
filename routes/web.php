@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ResellerController;
 use App\Http\Controllers\TokoController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,5 +51,17 @@ Route::group(['middleware' => ['auth:admin']], function ()
   Route::post('restock/inputresi', [ResellerController::class, 'input_resi']);
   Route::get('report', [TokoController::class, 'view_report']);
   Route::get('logout', [LoginController::class, 'logout_admin']);
+});
+Route::get('artisan/websockets', function () {
+  Artisan::call('websockets:serve');
+  return 'Websocket server is running.';
+});
+Route::get('artisan/cache/config', function () {
+  Artisan::call('config:cache');
+  return 'Config cache created.';
+});
+Route::get('artisan/cache/view', function () {
+  Artisan::call('view:cache');
+  return 'View cache created.';
 });
 Route::get('json/orderid/generate', [ResellerController::class, 'generate_order_id']);
