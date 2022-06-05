@@ -1,5 +1,5 @@
-@token = 125|jG3RbPUg3OZQpCd6KF3kKkLo5liIvpT1e9QD14V7
-@baseurl = http://blackopi-web.io
+@token = 129|3Y9boCnzIpHt3znoTjRIdrVxllYR9Lf0W4Wbzyr9
+@baseurl = https://ta-mifpolije.com/E31190631/public
 
 ###
 # register reseller
@@ -19,8 +19,8 @@ POST {{baseurl}}/api/reseller/login HTTP/1.1
 Accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-username=ilham123@gmail.com
-&password=ilham123
+username=siti123@gmail.com
+&password=siti123
 
 ###
 # Region: Get all province
@@ -92,7 +92,7 @@ Authorization: Bearer {{token}}
 
 ###
 #get this reseller transaction detail
-GET {{ baseurl }}/api/reseller/transaction/detail/3C0278HWQ1ZD HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/detail/C363UIL0A4Y3 HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
 
