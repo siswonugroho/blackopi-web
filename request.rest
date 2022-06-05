@@ -1,4 +1,4 @@
-@token = 129|3Y9boCnzIpHt3znoTjRIdrVxllYR9Lf0W4Wbzyr9
+@token = 132|hZv8Q3RSBF2a5ALcJDYoKiG6HYa9vgmmM7y0coMr
 @baseurl = https://ta-mifpolije.com/E31190631/public
 
 ###
@@ -19,8 +19,8 @@ POST {{baseurl}}/api/reseller/login HTTP/1.1
 Accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-username=siti123@gmail.com
-&password=siti123
+username=ilham123@gmail.com
+&password=ilham123
 
 ###
 # Region: Get all province
@@ -92,7 +92,7 @@ Authorization: Bearer {{token}}
 
 ###
 #get this reseller transaction detail
-GET {{ baseurl }}/api/reseller/transaction/detail/C363UIL0A4Y3 HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/detail/07OQDM2GJW9I HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
 

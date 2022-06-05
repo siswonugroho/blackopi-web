@@ -271,10 +271,15 @@ class ResellerController extends Controller
     $response['expired_at'] = $datefromtext->addMinutes(60)->format('Y-m-d H:i:s');
     $response['status'] = $status->transaction_status;
     $response['msg'] = $status->status_message;
+    $resellerData = Reseller::find($response['id_reseller']);
+    $dataAlamat[0] = $resellerData->alamat;
+    $dataAlamat[1] = $resellerData->kecamatan()->first()['subdistrict_name'];
+    $dataAlamat[2] = $resellerData->kota()->first()['city_name'];
+    $dataAlamat[3] = $resellerData->provinsi()->first()['province_name'];
+    $response['alamat_kirim'] = implode(', ', $dataAlamat);
     $response['produk'] = $response->produk()->first();
     $response['kurir'] = $response->kurir()->first();
     $response['kurir']->logo = url('/img/logokurir/' . $response['kurir']->logo);
-
     if ($status->payment_type == 'cstore') {
       $response['payment_name'] = $status->store;
       $response['payment_code'] = $status->payment_code;
