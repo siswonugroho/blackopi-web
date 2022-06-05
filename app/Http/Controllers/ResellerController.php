@@ -277,6 +277,7 @@ class ResellerController extends Controller
     $dataAlamat[2] = $resellerData->kota()->first()['city_name'];
     $dataAlamat[3] = $resellerData->provinsi()->first()['province_name'];
     $response['alamat_kirim'] = implode(', ', $dataAlamat);
+    $response['reseller'] = $response->reseller()->first();
     $response['produk'] = $response->produk()->first();
     $response['kurir'] = $response->kurir()->first();
     $response['kurir']->logo = url('/img/logokurir/' . $response['kurir']->logo);
