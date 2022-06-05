@@ -480,6 +480,14 @@ class ResellerController extends Controller
     return response()->json($response);
   }
 
+  public function count_restock()
+  {
+    $row = TransaksiReseller::where('id_reseller', auth('sanctum')->id());
+    $data['total_kg'] = $row->sum('kuantitas');
+    $data['total_harga'] = (int) $row->sum('total_harga') + $row->sum('ongkir');
+    return response()->json($data);
+  }
+
   private function generate(int $length, bool $uppercase_only)
   {
     if ($uppercase_only) {
