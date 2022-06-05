@@ -8,7 +8,7 @@
         <h3 class="fw-bold m-0">Detail Reseller</h3>
       </header>
       <section class="mt-3 hstack gap-4">
-        <img src="{{ url('image.php/' . $reseller->foto_profil . '?width=500&height=500&image=' . url('/storage/upload/img/reseller/' . $reseller->foto_profil), []) }}" class="rounded-circle avatar-detail-reseller" alt="foto profil">
+        <img src="{{ url('image.php/' . $reseller->foto_profil . '?width=500&height=500&image=' . url('/storage/upload/img/reseller/' . $reseller->foto_profil), []) }}" class="rounded-circle avatar-detail-reseller" onerror="this.onerror = null; this.src = '{{url('/img/noavatar.png')}}'" alt="foto profil">
         <div class="profile-name">
           <p class="fs-3 mb-1">{{ $reseller->nama_reseller }}</p>
           <p class="text-secondary">{{ $reseller->email }}</p>

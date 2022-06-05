@@ -118,7 +118,7 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col-auto">
-                <img src="{{ url('image.php/' . $reseller->foto_profil . '?width=150&height=150&image=' . url('storage/upload/img/reseller/'. $reseller->foto_profil)) }}" class="rounded-circle " style="height: 64px; width: 64px;">
+                <img src="{{ url('image.php/' . $reseller->foto_profil . '?width=150&height=150&image=' . url('storage/upload/img/reseller/'. $reseller->foto_profil)) }}" class="rounded-circle " onerror="this.onerror = null; this.src = '{{url('/img/noavatar.png')}}'" style="height: 64px; width: 64px;">
               </div>
               <div class="col">
                 <p class="fs-5 mb-0">{{ $reseller->nama_reseller }}</p>
