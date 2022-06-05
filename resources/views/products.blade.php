@@ -41,14 +41,14 @@
             @foreach ($produk as $item)
                 <div class="col">
                   <div class="card border-0 shadow-sm h-100">
-                    <img src="{{ asset('storage/upload/img/' . $item->foto_produk) }}" alt="foto produk" class="card-img-top">
+                    <img src="{{ url('/') }}/image.php/{{ $item->foto_produk }}?width=200&height=200&image={{ url('/') }}/storage/upload/img/{{ $item->foto_produk }}" alt="foto produk" class="card-img-top">
                     <div class="card-body">
                       <p class="fw-bold">{{ $item->nama_produk }}</p>
                       <p class="fw-bold fs-5 text-primary">Rp.{{ number_format($item->harga, 0, ',', '.') }},-</p>
                       <p class="text-secondary">{{ $item->stok }} kg tersedia</p>
                       <div class="hstack row-cols-2 gap-2 justify-content-center">
                         <a href="{{ url('product', ['id' => $item->id]) }}" class="btn btn-primary-light">Detail</a>
-                        <a href="#" class="btn btn-primary-light">Edit</a>
+                        <a href="{{ url('product/edit', ['id' => $item->id]) }}" class="btn btn-primary-light">Edit</a>
                       </div>
                     </div>
                   </div>

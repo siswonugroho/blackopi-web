@@ -34,7 +34,7 @@
             </div>
             <div class="mb-3">
               <label for="stok" class="form-label">Stok (kg)</label>
-              <input type="number" value="{{ $produk->stok }}" min="0" name="stok" id="stok" class="form-control">
+              <input type="number" value="{{ $produk->stok }}" min="0" step="0.1" name="stok" id="stok" class="form-control">
             </div>
           </div>
           <div class="mb-3">
