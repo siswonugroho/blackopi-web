@@ -110,11 +110,12 @@ class LoginController extends Controller
         'token' => $token,
       ];
       return response($response, 201);
+    } else {
+      return response([
+        'success' => 0,
+        'message' => 'Email, telepon atau password salah'
+      ], 401);
     }
-    return response([
-      'success' => 0,
-      'message' => 'Email, telepon atau password salah'
-    ], 401);
   }
 
   public function api_register_reseller(Request $request)
@@ -139,6 +140,7 @@ class LoginController extends Controller
         'message' => $validator->errors()
       ];
     } else {
+      $form['password'] = bcrypt($form['password_confirmation']);
       $reseller = Reseller::create($form);
       $response = [
         'success' => 1,
