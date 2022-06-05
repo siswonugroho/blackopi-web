@@ -146,6 +146,7 @@ class ResellerController extends Controller
       'id_kurir' => 'required',
       'payment_type' => 'required',
       'payment_name' => 'required',
+      'ongkir' => 'required'
     ]);
 
     $reseller = Reseller::find(auth('sanctum')->id());
@@ -165,7 +166,14 @@ class ResellerController extends Controller
         'price' => $product_selected->harga,
         'quantity' => $validatedData['kuantitas'],
         'name' => $product_selected->nama_produk
-      ]
+      ],
+      [
+        'id' => '1',
+        'price' => $validatedData['ongkir'],
+        'quantity' => '1',
+        'name' => 'Ongkir'
+      ],
+      
     ];
     // return response()->json($item_details);
     // die;
@@ -182,7 +190,7 @@ class ResellerController extends Controller
       'payment_type' => $validatedData['payment_type'],
       'transaction_details' => [
         'order_id' => $this->generate(12, true),
-        'gross_amount' => $item_details[0]['price'] * $item_details[0]['quantity']
+        'gross_amount' => ($item_details[0]['price'] * $item_details[0]['quantity']) + $item_details[1]['price']
       ],
       'custom_expiry' => [
         'expiry_duration' => 60,
@@ -215,6 +223,7 @@ class ResellerController extends Controller
     $transaksi->kuantitas = $validatedData['kuantitas'];
     $transaksi->id_kurir = $validatedData['id_kurir'];
     $transaksi->total_harga = $transaction_data['transaction_details']['gross_amount'];
+    $transaksi->ongkir = $validatedData['ongkir'];
     $transaksi->id_metode_bayar = $id_metode_bayar;
     if ($midtrans_response->transaction_status == 'pending') {
       $transaksi->status = 'pending';
