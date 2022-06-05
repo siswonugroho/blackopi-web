@@ -279,6 +279,7 @@ class ResellerController extends Controller
     $response['alamat_kirim'] = implode(', ', $dataAlamat);
     $response['reseller'] = $response->reseller()->first();
     $response['produk'] = $response->produk()->first();
+    $response['produk']->foto_produk = asset('storage/upload/img/' . $response['produk']->foto_produk);
     $response['kurir'] = $response->kurir()->first();
     $response['kurir']->logo = url('/img/logokurir/' . $response['kurir']->logo);
     if ($status->payment_type == 'cstore') {

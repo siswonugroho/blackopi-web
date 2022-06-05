@@ -19,7 +19,7 @@ class ProductController extends Controller
   public function detail(Produk $item)
   {
     return view('productdetail', [
-      'title' => 'Detail Produk ' . $item->nama_produk,
+      'title' => 'Produk',
       'produk' => $item
     ]);
   }

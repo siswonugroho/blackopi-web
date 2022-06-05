@@ -32,7 +32,7 @@ $hargaProduk = number_format($produkItem->harga, 0, ',', '.')
       <span class="iconify me-2" data-icon="ic:outline-home" data-width="24"></span>
       Beranda
     </a>
-    <a class="nav-link {{ $title === 'Produk' ? 'active' : '' }}" aria-current="page" href="{{ url('product') }}">
+    <a class="nav-link {{ $title === 'Produk' ? 'active' : '' }}" aria-current="page" href="{{ url('product/1') }}">
       <span class="iconify me-2" data-icon="ic:outline-local-cafe" data-width="24"></span>
       Produk
     </a>
