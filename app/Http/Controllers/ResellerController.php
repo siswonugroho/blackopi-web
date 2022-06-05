@@ -269,7 +269,7 @@ class ResellerController extends Controller
     $response['payment_name'] = '';
     $response['payment_code'] = '';
     $response['expired_at'] = $datefromtext->addMinutes(60)->format('Y-m-d H:i:s');
-    $response['status'] = $status->transaction_status;
+    // $response['status'] = $response->transaction_status;
     $response['msg'] = $status->status_message;
     $response['produk'] = $response->produk()->first();
     $response['kurir'] = $response->kurir()->first();
@@ -342,7 +342,7 @@ class ResellerController extends Controller
     Notification::send($all_users, new RealTimeNotification([
       'message' => 'Transaksi pesanan ' . $order_id . ' ' . $status_text,
       'url' => url('/restock'),
-      'icon' => $notif_icon
+      'icon' => $notif_icon 
     ]));
     return response('OK', 200);
   }

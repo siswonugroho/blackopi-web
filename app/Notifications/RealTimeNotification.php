@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RealTimeNotification extends Notification implements ShouldBroadcast
+class RealTimeNotification extends Notification
 {
   use Queueable;
 
@@ -32,7 +32,7 @@ class RealTimeNotification extends Notification implements ShouldBroadcast
    */
   public function via($notifiable)
   {
-    return ['broadcast', 'database'];
+    return ['database'];
   }
 
   /**
