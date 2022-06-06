@@ -1,4 +1,4 @@
-@token = 132|hZv8Q3RSBF2a5ALcJDYoKiG6HYa9vgmmM7y0coMr
+@token = 146|utIARwmayf8M4YVYwey0QlF5Yx1FxhycGdsRE0wV
 @baseurl = https://ta-mifpolije.com/E31190631/public
 
 ###
@@ -7,11 +7,23 @@ POST {{ baseurl }}/api/reseller/register HTTP/1.1
 Accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-nama_reseller=Selfi
-&email=selfi123@gmail.com
-&password=selfi123
-&password_confirmation=selfi123
-&telp=0857598327342
+nama_reseller=Indah
+&email=indah123@gmail.com
+&password=indah123
+&password_confirmation=indah123
+&telp=085759873124719
+
+###
+# register reseller (local)
+POST http://blackopi-web.io/api/reseller/register HTTP/1.1
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+nama_reseller=Indah
+&email=indah123@gmail.com
+&password=indah123
+&password_confirmation=indah123
+&telp=085759873124719
 
 ###
 # login reseller
@@ -19,8 +31,17 @@ POST {{baseurl}}/api/reseller/login HTTP/1.1
 Accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-username=ilham123@gmail.com
-&password=ilham123
+username=indah123@gmail.com
+&password=indah123
+
+###
+# login reseller (local)
+POST http://blackopi-web.io/api/reseller/login HTTP/1.1
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+username=indah123@gmail.com
+&password=indah123
 
 ###
 # Region: Get all province
@@ -49,6 +70,12 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
+# Logout reseller
+POST http://blackopi-web.io/api/reseller/logout  HTTP/1.1
+Accept: application/json
+Authorization: Bearer 128|lZSPEojWFn5kXYCYCq37TLUqRLOnVjmgV4PsBFVN
+
+###
 #(broken, don't use) get all product only if reseller logged in
 GET {{ baseurl }}/api/product/all  HTTP/1.1
 Accept: application/json
@@ -72,17 +99,34 @@ GET {{ baseurl }}/api/kurir/all HTTP/1.1
 Accept: application/json
 
 ###
+#Simpan transaksi reseller (local)
+POST http://blackopi-web.io/api/reseller/transaction/save  HTTP/1.1
+Accept: application/json
+Authorization: Bearer Bearer 130|4rchUuKllxcXl4lx38Ob5m0nqbAQLzEryqTRvmbR
+Content-Type: application/json
+
+{
+  "id_kurir": "1",
+  "id_produk": "1",
+  "kuantitas": "2",
+  "ongkir": 2000,
+  "payment_type": "cstore",
+  "payment_name": "alfamart"
+}
+
+###
 #Simpan transaksi reseller
 POST {{ baseurl }}/api/reseller/transaction/save  HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-id_produk=1
-&kuantitas=2
-&id_kurir=1
-&payment_type=bank_transfer
-&payment_name=bri
+# id_produk=1
+# &kuantitas=2
+# &id_kurir=1
+# &payment_type=bank_transfer
+# &payment_name=bri
+# &ongkir=2000
 
 ###
 #get this reseller transactions list
@@ -92,15 +136,35 @@ Authorization: Bearer {{token}}
 
 ###
 #get this reseller transaction detail
-GET {{ baseurl }}/api/reseller/transaction/detail/07OQDM2GJW9I HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/detail/L202C703A1DG HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
+
+
+###
+#get this reseller transaction detail (local)
+GET http://blackopi-web.io/api/reseller/transaction/detail/07OQDM2GJW9I HTTP/1.1
+Accept: application/json
+Authorization: Bearer 130|4rchUuKllxcXl4lx38Ob5m0nqbAQLzEryqTRvmbR
 
 ###
 #change transaction status to 'selesai' (a.k.a finish transaction)
 GET {{ baseurl }}/api/reseller/transaction/finish/15TI0BOJ0DXZ HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
+
+
+###
+#sum total transaction by reseller
+GET {{baseurl}}/api/reseller/transaction/total HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+#sum total transaction (local)
+GET http://blackopi-web.io/api/reseller/transaction/total HTTP/1.1
+Accept: application/json
+Authorization: Bearer 128|lZSPEojWFn5kXYCYCq37TLUqRLOnVjmgV4PsBFVN
 
 ###
 # Process transaction
