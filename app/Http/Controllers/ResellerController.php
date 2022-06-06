@@ -275,7 +275,7 @@ class ResellerController extends Controller
     $datefromtext = Carbon::parse($status->transaction_time);
     $response = TransaksiReseller::where('id_pesanan', $id_pesanan)->first();
     $response['payment_type'] = $status->payment_type;
-    $response['payment_name'] = '';
+    $response['payment_name'] = $response->pembayaran()->first()['nama_lengkap'];
     $response['payment_code'] = '';
     $response['expired_at'] = $datefromtext->addMinutes(60)->format('Y-m-d H:i:s');
     $response['status'] = $status->transaction_status;
@@ -292,10 +292,10 @@ class ResellerController extends Controller
     $response['kurir'] = $response->kurir()->first();
     $response['kurir']->logo = url('/img/logokurir/' . $response['kurir']->logo);
     if ($status->payment_type == 'cstore') {
-      $response['payment_name'] = $status->store;
+      // $response['payment_name'] = $status->store;
       $response['payment_code'] = $status->payment_code;
     } else if ($status->payment_type == 'bank_transfer') {
-      $response['payment_name'] = $status->va_numbers[0]->bank;
+      // $response['payment_name'] = $status->va_numbers[0]->bank;
       $response['payment_code'] = $status->va_numbers[0]->va_number;
     }
     return response()->json($response);
