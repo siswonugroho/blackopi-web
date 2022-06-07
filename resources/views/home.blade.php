@@ -16,7 +16,7 @@
         <div class="col">
           <div class="card border-0 bg-primary-light shadow-sm">
             <div class="card-body">
-              <p class="fs-4 mb-1 fw-bold">{{ $sold_store }}</p>
+              <p class="fs-3 mb-1 fw-bold">{{ $sold_store }}</p>
               <p>Kg kopi terjual di toko</p>
             </div>
           </div>
@@ -24,7 +24,7 @@
         <div class="col">
           <div class="card border-0 bg-primary-light shadow-sm">
             <div class="card-body">
-              <p class="fs-4 mb-1 fw-bold">{{ $sold_reseller }}</p>
+              <p class="fs-3 mb-1 fw-bold">{{ $sold_reseller }}</p>
               <p>Kg terjual ke reseller</p>
             </div>
           </div>
@@ -32,7 +32,7 @@
         <div class="col">
           <div class="card border-0 bg-primary-light shadow-sm">
             <div class="card-body">
-              <p class="fs-4 mb-1 fw-bold">{{ $count_reseller }}</p>
+              <p class="fs-3 mb-1 fw-bold">{{ $count_reseller }}</p>
               <p>Reseller terdaftar</p>
             </div>
           </div>
@@ -40,7 +40,7 @@
         <div class="col">
           <div class="card border-0 bg-primary-light shadow-sm">
             <div class="card-body">
-              <p class="fs-4 mb-1 fw-bold">{{ $available }}</p>
+              <p class="fs-3 mb-1 fw-bold">{{ $available }}</p>
               <p>Kg stok tersedia</p>
             </div>
           </div>
@@ -76,9 +76,9 @@
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <header class="h3 fw-bold">Data Reseller</header>
-            <div class="list-group list-group-flush">
+            <div class="list-group list-group-flush mb-3">
               @foreach ($five_recent_resellers as $item)    
-              <a href="{{ url('reseller/detail/' . $item->id) }}" class="list-group-item hstack">
+              <a href="{{ url('reseller/detail/' . $item->id) }}" class="list-group-item list-group-item-action hstack">
                 <img
                   src="{{ url('/') }}/image.php/{{ $item->foto_profil }}?width=80&height=80&image={{ url('/') }}/storage/upload/img/reseller/{{ $item->foto_profil }}"
                   class="rounded-circle me-2" style="height: 3rem;" onerror="this.onerror = null; this.src = '{{url('/img/noavatar.png')}}'">
@@ -89,7 +89,7 @@
               </a>
               @endforeach
             </div>
-            <a href="{{ url('reseller') }}" class="text-decoration-none"></a>
+            <a href="{{ url('reseller') }}" class="text-decoration-none">Lihat semua</a>
           </div>
         </div>
       </div>

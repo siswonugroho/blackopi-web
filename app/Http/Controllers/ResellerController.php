@@ -278,7 +278,10 @@ class ResellerController extends Controller
     $response['payment_name'] = $response->pembayaran()->first()['nama_lengkap'];
     $response['payment_code'] = '';
     $response['expired_at'] = $datefromtext->addMinutes(60)->format('Y-m-d H:i:s');
+<<<<<<< HEAD
     // $response['status'] = $response->transaction_status;
+=======
+>>>>>>> 5204443 (Fix some strings)
     $response['msg'] = $status->status_message;
     $resellerData = Reseller::find($response['id_reseller']);
     $dataAlamat[0] = $resellerData->alamat;

@@ -9,7 +9,7 @@
   <main class="col m-4 d-flex flex-column">
     <header class="my-3 d-flex justify-content-between align-items-center">
       <div class="main-title">
-        <h3 class="fw-bold">Riwayat Transaksi</h3>
+        <h3 class="fw-bold">Transaksi Toko</h3>
         <p class="m-0">
           Total <span class="total-val"></span> transaksi 
           <a role="button" class="btnrefreshtable text-primary text-decoration-none">

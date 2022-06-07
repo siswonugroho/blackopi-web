@@ -42,11 +42,11 @@ $hargaProduk = number_format($produkItem->harga, 0, ',', '.')
     </a>
     <a href="{{ url('restock', []) }}" class="nav-link {{ $title === 'Pemesanan Reseller' ? 'active' : '' }}">
       <span class="iconify me-2" data-icon="mdi:shopping-outline" data-width="24"></span>
-      Pemesanan Reseller
+      Transaksi Reseller
     </a>
     <a href="{{ url('history', []) }}" class="nav-link {{ $title === 'Riwayat Transaksi Toko' ? 'active' : '' }}">
       <span class="iconify me-2" data-icon="mdi:history" data-width="24"></span>
-      Riwayat Transaksi
+      Transaksi Toko
     </a>
     <a href="{{ url('report', []) }}" class="nav-link {{ $title === 'Laporan Penjualan' ? 'active' : '' }}" aria-current="page">
       <span class="iconify me-2" data-icon="mdi:chart-box-outline" data-width="24"></span>
