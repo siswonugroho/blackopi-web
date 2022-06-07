@@ -180,7 +180,7 @@ class ResellerController extends Controller
 
     if ($product_selected->stok < $validatedData['kuantitas']) {
       return response()->json([
-        'status' => 'failed',
+        'success' => 0,
         'message' => 'Kuantitas yang Anda masukkan melebihi stok.'
       ]);
     }
@@ -480,9 +480,9 @@ class ResellerController extends Controller
     return response()->json($response);
   }
 
-  public function count_restock()
+  public function count_restock($year, $month)
   {
-    $row = TransaksiReseller::where('id_reseller', auth('sanctum')->id());
+    $row = TransaksiReseller::where('id_reseller', auth('sanctum')->id())->whereMonth('tanggal', $month)->whereYear('tanggal', $year);
     $data['total_kg'] = $row->sum('kuantitas');
     $data['total_harga'] = (int) $row->sum('total_harga') + $row->sum('ongkir');
     return response()->json($data);
