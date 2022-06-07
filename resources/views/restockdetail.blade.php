@@ -125,11 +125,11 @@
               </div>
             </div>
             <div class="hstack gap-2 mt-3 ">
-              <a role="button" class="btn btn-outline-success btn-sm w-100">
+              <a href="https://wa.me/{{ $reseller->telp }}" target="_blank" class="btn btn-outline-success btn-sm w-100">
                 <span class="iconify me-2" data-icon="mdi:whatsapp" data-height="16"></span>
                 WhatsApp
               </a>
-              <a role="button" class="btn btn-outline-danger btn-sm w-100">
+              <a href="mailto:{{ $reseller->email }}" class="btn btn-outline-danger btn-sm w-100">
                 <span class="iconify me-2" data-icon="mdi:email-outline" data-height="16"></span>
                 Email
               </a>

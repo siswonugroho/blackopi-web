@@ -13,14 +13,14 @@
           <p class="fs-3 mb-1">{{ $reseller->nama_reseller }}</p>
           <p class="text-secondary">{{ $reseller->email }}</p>
           <div class="hstack gap-2">
-            <button class="btn btn-success text-white">
+            <a href="https://wa.me/{{ $reseller->telp }}" target="_blank" class="btn btn-success text-white">
               <span class="iconify" data-icon="mdi:whatsapp" data-width="24"></span>
               Chat
-            </button>
-            <button class="btn btn-primary">
+            </a>
+            <a href="mailto:{{ $reseller->email }}" target="_blank" class="btn btn-primary">
               <span class="iconify" data-icon="mdi:email-outline" data-width="24"></span>
               Email
-            </button>
+            </a>
           </div>
         </div>
       </section>
