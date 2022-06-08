@@ -144,7 +144,7 @@ class LoginController extends Controller
       $reseller = Reseller::create($form);
       $response = [
         'success' => 1,
-        'message' => 'Registrasi berhasil',
+        // 'message' => 'Registrasi berhasil',
         'user' => $reseller,
       ];
     }

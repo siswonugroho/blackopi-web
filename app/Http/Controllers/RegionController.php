@@ -31,7 +31,7 @@ class RegionController extends Controller
     $courier_list = Kurir::all();
     // return response()->json($courier_list); die;
     $post_data_ongkir = [
-      'origin' => '179',
+      'origin' => '489',
       'destination' => '',
       'weight' => '',
       'courier' => ''
