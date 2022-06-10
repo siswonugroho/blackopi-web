@@ -55,7 +55,7 @@ class TokoController extends Controller
   public function json_chart_history($year, $month)
   {
     $dataToko = TransaksiToko::whereMonth('created_at', $month)->whereYear('created_at', $year)->get();
-    $dataReseller = TransaksiReseller::whereMonth('tanggal', $month)->whereYear('tanggal', $year)->get(['tanggal', 'kuantitas']);
+    $dataReseller = TransaksiReseller::where('status', '!=', 'cancel')->whereMonth('tanggal', $month)->whereYear('tanggal', $year)->get(['tanggal', 'kuantitas']);
     $data1 = [
       'tanggal' => [],
       'toko' => [],
@@ -84,12 +84,14 @@ class TokoController extends Controller
       $data1['tanggal'][] = $i;
       if (array_key_exists($i, $valueToko)) {
         $data1['toko'][] = $valueToko[$i];
+      } else {
+        $data1['toko'][] = 0;
       }
       if (array_key_exists($i, $valueReseller)) {
         $data1['reseller'][] = $valueReseller[$i];
+      } else {
+        $data1['reseller'][] = 0;
       }
-      $data1['toko'][] = 0;
-      $data1['reseller'][] = 0;
     }
     
 
