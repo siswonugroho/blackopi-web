@@ -151,9 +151,9 @@ class TokoController extends Controller
     }
     $totals = [
       'sold_store' => TransaksiToko::sum('kuantitas'),
-      'sold_reseller' => TransaksiReseller::sum('kuantitas'),
+      'sold_reseller' => TransaksiReseller::where('status', 'selesai')->sum('kuantitas'),
       'total_rp_store' => number_format(TransaksiToko::sum('total_harga'), 0, ',', '.'),
-      'total_rp_reseller' => number_format(TransaksiReseller::sum('total_harga'), 0, ',', '.'),
+      'total_rp_reseller' => number_format(TransaksiReseller::where('status', 'selesai')->sum('total_harga'), 0, ',', '.'),
     ];
     return view('report', [
       'title' => 'Laporan Penjualan',

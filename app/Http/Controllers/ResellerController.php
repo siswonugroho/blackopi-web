@@ -331,6 +331,7 @@ class ResellerController extends Controller
     $order_id = $notif->order_id;
     $transaction = $notif->transaction_status;
     $row = TransaksiReseller::where('id_pesanan', $order_id)->first();
+    $product = Produk::find(1);
 
     error_log("Order ID $order_id: " . "transaction status = $transaction");
 
@@ -341,6 +342,8 @@ class ResellerController extends Controller
       $notif_icon = 'mdi:clipboard-check-outline';
     } else if ($transaction == 'cancel') {
       $row->status = 'cancel';
+      $product->stok = (int) $product->stok += $row->kuantitas;
+      $product->save();
       $status_text = 'dibatalkan oleh reseller.';
       $notif_icon = 'mdi:clipboard-remove-outline';
     } else if ($transaction == 'expire') {
@@ -481,7 +484,7 @@ class ResellerController extends Controller
 
   public function count_restock($year, $month)
   {
-    $row = TransaksiReseller::where('id_reseller', auth('sanctum')->id())->whereMonth('tanggal', $month)->whereYear('tanggal', $year);
+    $row = TransaksiReseller::where('id_reseller', auth('sanctum')->id())->where('status', 'selesai')->whereMonth('tanggal', $month)->whereYear('tanggal', $year);
     $data['total_kg'] = $row->sum('kuantitas');
     $data['total_harga'] = (int) $row->sum('total_harga') + $row->sum('ongkir');
     return response()->json($data);
