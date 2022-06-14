@@ -73,10 +73,6 @@ $hargaProduk = number_format($produkItem->harga, 0, ',', '.')
         {{ Auth::user()->nama_admin }}
       </a>
       <div class="dropdown-menu shadow border-0">
-        <a href="" class="dropdown-item">
-          <span class="iconify me-2" data-icon="mdi:settings-outline" data-width="24"></span>
-          Pengaturan
-        </a>
         <a href="{{ url('logout', []) }}" class="dropdown-item text-danger">
           <span class="iconify me-2" data-icon="mdi:logout-variant" data-width="24"></span>
           Logout
