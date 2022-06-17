@@ -302,15 +302,24 @@ class ResellerController extends Controller
 
   public function process_transaction(string $action, string $order_id)
   {
+    $response = [
+      'success' => 1,
+      'message' => ''
+    ];
     try {
       if ($action == 'cancel') {
-        $response = Midtrans\Transaction::cancel($order_id);
+        Midtrans\Transaction::cancel($order_id);
+        $response['message'] = 'Pesanan berhasil dibatalkan';
       } else if ($action == 'expire') {
-        $response = Midtrans\Transaction::expire($order_id);
+        Midtrans\Transaction::expire($order_id);
+        $response['message'] = 'Waktu pembayaran telah habis';
       }
       return response()->json($response);
     } catch (Exception $e) {
-      return response();
+      return response([
+        'success' => 0,
+        'message' => 'Gagal memproses pembatalan'
+      ]);
     }
   }
 
