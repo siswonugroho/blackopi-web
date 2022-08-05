@@ -18,7 +18,7 @@
     @endif
     <section class="row my-3 gx-4">
       <figure class="col-auto img-product-detail">
-        <img src="{{ asset('storage/upload/img/' . $produk->foto_produk) }}" alt="Kopi 1" class="w-100 h-100 rounded">
+        <img src="{{ asset('upload/img/' . $produk->foto_produk) }}" alt="Kopi 1" class="w-100 h-100 rounded">
       </figure>
       <div class="col">
         <p class="fs-4">{{ $produk->nama_produk }}</p>
@@ -44,7 +44,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body py-0">
-      <img src="{{ asset('storage/upload/img/' . $produk->foto_produk) }}" alt="foto produk" class="w-100">
+      <img src="{{ asset('upload/img/' . $produk->foto_produk) }}" alt="foto produk" class="w-100">
     </div>
 </div>
 </form>

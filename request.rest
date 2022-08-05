@@ -1,4 +1,4 @@
-@token = 146|utIARwmayf8M4YVYwey0QlF5Yx1FxhycGdsRE0wV
+@token = 247|IeYvYfbSvmW1ocUkxYZGjQTMZoNjqRWKnE2g7t6L
 @baseurl = https://ta-mifpolije.com/E31190631/public
 
 ###
@@ -31,8 +31,8 @@ POST {{baseurl}}/api/reseller/login HTTP/1.1
 Accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-username=indah123@gmail.com
-&password=indah123
+username=ilham123@gmail.com
+&password=ilham123
 
 ###
 # login reseller (local)
@@ -40,8 +40,8 @@ POST http://blackopi-web.io/api/reseller/login HTTP/1.1
 Accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-username=indah123@gmail.com
-&password=indah123
+username=ilham123@gmail.com
+&password=ilham123
 
 ###
 # Region: Get all province
@@ -60,7 +60,7 @@ Accept: application/json
 
 ###
 # Get ongkir by city id and weight
-GET {{ baseurl }}/api/ongkir/75/100 HTTP/1.1
+GET {{ baseurl }}/api/ongkir/178/100 HTTP/1.1
 Accept: application/json
 
 ###
@@ -121,12 +121,12 @@ Accept: application/json
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
-# id_produk=1
-# &kuantitas=2
-# &id_kurir=1
-# &payment_type=bank_transfer
-# &payment_name=bri
-# &ongkir=2000
+id_produk=1
+&kuantitas=2
+&id_kurir=1
+&payment_type=bank_transfer
+&payment_name=bri
+&ongkir=2000
 
 ###
 #get this reseller transactions list
@@ -136,7 +136,7 @@ Authorization: Bearer {{token}}
 
 ###
 #get this reseller transaction detail
-GET {{ baseurl }}/api/reseller/transaction/detail/L202C703A1DG HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/detail/07OQDM2GJW9I HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
 
@@ -168,7 +168,7 @@ Authorization: Bearer 128|lZSPEojWFn5kXYCYCq37TLUqRLOnVjmgV4PsBFVN
 
 ###
 # Process transaction
-GET {{ baseurl }}/api/reseller/transaction/action/cancel/668b89236b347eb10db4abaf19aac4ce  HTTP/1.1
+GET {{ baseurl }}/api/reseller/transaction/action/cancel/45BI5DP9S67Y  HTTP/1.1
 Accept: application/json
 Authorization: Bearer {{token}}
 
@@ -263,5 +263,22 @@ Content-Type: application/x-www-form-urlencoded
 email=sovanafilm@gmail.com
 &password=5cZcymLLQx5d
 
+###
+GET https://api.binderbyte.com/v1/track?api_key=e67a7de0d1432dcb71bd83f1b2805bc713cf95480d348d04df18941034cefa63&courier=pos&awb=P2202170032717 HTTP/1.1
+Accept: application/json
+
+###
+# API ongkir rajaongkir asli
+POST https://api.rajaongkir.com/starter/cost HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Key: 75d351d4bbaed3bcabf3e24bea19363f
+
+{
+  "origin": 179,
+  "destination": 178,
+  "weight": 100,
+  "courier": "jne"
+}
 
 

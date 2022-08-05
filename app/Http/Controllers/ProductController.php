@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -47,14 +48,13 @@ class ProductController extends Controller
 
     if ($request->hasFile('foto_produk')) {
       if ($request->has('foto_produk_lama')) {
-        Storage::delete('upload/img/' . $request->foto_produk_lama);
+        File::delete('upload/img/' . $request->foto_produk_lama);
       }
       $validatedData['foto_produk'] = $request->file('foto_produk')->hashName();
-      $request->file('foto_produk')->store('upload/img');
+      $request->file('foto_produk')->move('upload/img', $validatedData['foto_produk']);
     } else {
       $validatedData['foto_produk'] = $request->foto_produk_lama;
     }
-
 
     $produk = Produk::find($validatedData['id']);
     $produk->nama_produk = $validatedData['nama_produk'];

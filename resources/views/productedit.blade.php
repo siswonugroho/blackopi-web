@@ -10,7 +10,7 @@
     <section class="row my-3 gx-5">
       <div class="col-auto">
         <figure class="img-product-detail">
-          <img src="{{ asset('storage/upload/img/' . $produk->foto_produk) }}" alt="Kopi 1" class="rounded w-100 h-100 preview_foto">
+          <img src="{{ asset('upload/img/' . $produk->foto_produk) }}" alt="Kopi 1" class="rounded w-100 h-100 preview_foto">
           <div class="my-3">
             <input type="file" hidden name="foto_produk" id="foto_produk" class="input_foto"
               accept="image/jpg, image/jpeg, image/png">
